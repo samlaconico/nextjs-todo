@@ -23,11 +23,11 @@ export default async function Home() {
           className="border-2 border-neutral-800 rounded-lg p-1 hover:bg-pink-100"
           href="/new"
         >
-          New item
+          Create New Item
         </Link>
       </header>
 
-      <ul className="pl-4">
+      <ul className="flex justify-between">
         {todos.map(todo => (
           <TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo}/>
         ))}
