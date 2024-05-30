@@ -2,6 +2,8 @@ import Link from "next/link";
 import { prisma } from "./db";
 import TodoItem from "./components/TodoItem";
 
+export const dynamic = "force-dynamic";
+
 function getTodos() {
   return prisma.todo.findMany()
 }

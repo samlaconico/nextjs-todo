@@ -2,6 +2,8 @@ import Link from "next/link";
 import { prisma } from "../db";
 import { redirect } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 async function createTodo(data: FormData) {
     "use server"
     
