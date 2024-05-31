@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { prisma } from "./db";
 import TodoItem from "./components/TodoItem";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
@@ -12,6 +13,13 @@ async function toggleTodo(id: string, complete: boolean) {
   "use server"
 
   await prisma.todo.update({where: {id}, data: {complete}})
+}
+
+async function removeTodo(id: string) {
+  "use server"
+
+  await prisma.todo.delete({where: {id}})
+  redirect('/')
 }
 
 export default async function Home() {
@@ -31,7 +39,7 @@ export default async function Home() {
 
       <ul className="flex justify-between">
         {todos.map(todo => (
-          <TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo}/>
+          <TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo} removeTodo={removeTodo}/>
         ))}
       </ul>
 
