@@ -1,22 +1,24 @@
 import Link from "next/link";
 import { prisma } from "../db";
 import { redirect } from "next/navigation";
+import { useState } from "react";
 
 export const dynamic = "force-dynamic";
 
 async function createTodo(data: FormData) {
-    "use server"
-    
-    const title = data.get("title")?.valueOf()
-    
-    if (typeof title !== "string" || title.length === 0) {
-        throw new Error("Title is not a string")
-    }
-    await prisma.todo.create({data: {title, complete: false}})
-    redirect("/")
+  "use server"
+
+  const title = data.get("title")?.valueOf()
+
+  if (typeof title !== "string" || title.length === 0) {
+      throw new Error("Title is not a string")
+  }
+  await prisma.todo.create({data: {title, complete: false}})
+  redirect("/")
 }
 
 export default function New() {
+
   return (
     <>
       <header className="flex justify-between items-center mb-5">

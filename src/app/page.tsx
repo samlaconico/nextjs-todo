@@ -37,7 +37,7 @@ export default async function Home() {
         </Link>
       </header>
 
-      <ul className="flex justify-between">
+      <ul className="flex flex-wrap gap-5 justify-center">
         {todos.map(todo => (
           <TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo} removeTodo={removeTodo}/>
         ))}
